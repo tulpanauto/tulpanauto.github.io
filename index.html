@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TULPAN AUTO | Автомобили из Китая</title>
+  <meta name="description" content="Новые электромобили и гибриды из Китая в Россию. Сравниваем предложения поставщиков и рассчитываем стоимость автомобиля под ключ.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 17, 31, 0.95);
+      border-bottom: 1px solid #1d2b3d;
+      backdrop-filter: blur(10px);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #36d399;
+    }
+
+    .nav-button {
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid #36d399;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(54,211,153,.17), transparent 35%),
+        linear-gradient(135deg, #07111f, #0d1b2c);
+      padding: 70px 0;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 13px;
+      margin-bottom: 22px;
+      border-radius: 50px;
+      background: rgba(54,211,153,.12);
+      border: 1px solid rgba(54,211,153,.35);
+      color: #5ee6b4;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.02;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: #36d399;
+    }
+
+    .hero p {
+      max-width: 700px;
+      color: #b9c5d3;
+      font-size: 19px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 15px 22px;
+      border-radius: 11px;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .btn-main {
+      background: #36d399;
+      color: #04120d;
+    }
+
+    .btn-second {
+      border: 1px solid #3c4d61;
+      color: white;
+      background: #101e2e;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: #9cacbd;
+      max-width: 700px;
+      margin-bottom: 35px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #0e1b2a;
+      border: 1px solid #1d3045;
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .number {
+      color: #36d399;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #9cacbd;
+    }
+
+    .highlight {
+      background: #0a1624;
+    }
+
+    .price-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .price-item {
+      padding: 17px;
+      background: #101f30;
+      border-radius: 12px;
+      border: 1px solid #20364d;
+    }
+
+    .price-item strong {
+      display: block;
+      color: #36d399;
+      margin-bottom: 5px;
+    }
+
+    .request {
+      text-align: center;
+      background: linear-gradient(135deg, #0d2030, #102b29);
+      border: 1px solid #285147;
+      border-radius: 22px;
+      padding: 50px 25px;
+    }
+
+    .request h2 {
+      font-size: 34px;
+      margin-bottom: 14px;
+    }
+
+    .request p {
+      color: #b8c6cf;
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      border-top: 1px solid #1d2b3d;
+      padding: 30px 0;
+      color: #8190a0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        min-height: 64px;
+      }
+
+      .logo {
+        font-size: 19px;
+      }
+
+      .nav-button {
+        padding: 8px 11px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 75px 0;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .grid,
+      .price-list {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .section-title,
+      .request h2 {
+        font-size: 29px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">TULPAN <span>AUTO</span></div>
+      <a class="nav-button" href="#request">Подобрать авто</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="tag">
+          EV • PHEV • EREV • Китай → Россия
+        </div>
+
+        <h1>
+          Автомобиль из Китая
+          <span>без лишней наценки</span>
+        </h1>
+
+        <p>
+          Один запрос — несколько предложений из Китая.
+          Сравниваем цену, комплектацию, документы и условия поставки,
+          а затем рассчитываем стоимость автомобиля до России.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-main" href="#request">
+            Знаю, какую модель хочу
+          </a>
+
+          <a class="btn btn-second" href="#request">
+            Подберите автомобиль
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+
+      <h2 class="section-title">Как мы работаем</h2>
+
+      <p class="section-subtitle">
+        Мы не ограничиваем выбор одним складом или одним предложением.
+        Запрашиваем условия поставки и сравниваем доступные варианты.
+      </p>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="number">01</div>
+          <h3>Ваш запрос</h3>
+          <p>
+            Вы называете конкретную модель или сообщаете бюджет
+            и требования к автомобилю.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">02</div>
+          <h3>Предложения из Китая</h3>
+          <p>
+            Сравниваем доступные варианты по цене,
+            комплектации, документам и условиям.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="number">03</div>
+          <h3>Расчёт до России</h3>
+          <p>
+            Показываем структуру расходов и итоговую
+            ориентировочную стоимость автомобиля.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="highlight">
+    <div class="container">
+
+      <h2 class="section-title">Понятная структура цены</h2>
+
+      <p class="section-subtitle">
+        До заказа вы понимаете, из чего складывается стоимость автомобиля.
+      </p>
+
+      <div class="price-list">
+
+        <div class="price-item">
+          <strong>01 — Автомобиль</strong>
+          Стоимость автомобиля в Китае
+        </div>
+
+        <div class="price-item">
+          <strong>02 — Логистика</strong>
+          Расходы по Китаю и доставка
+        </div>
+
+        <div class="price-item">
+          <strong>03 — Таможня</strong>
+          Таможенные платежи и утильсбор
+        </div>
+
+        <div class="price-item">
+          <strong>04 — Документы</strong>
+          СБКТС, ЭПТС и необходимое оформление
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section>
+    <div class="container">
+
+      <h2 class="section-title">Что проверяем</h2>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Комплектацию</h3>
+          <p>
+            Проверяем характеристики конкретной версии автомобиля.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Документы</h3>
+          <p>
+            Уточняем документы и возможность легального оформления в России.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Мощность</h3>
+          <p>
+            Для электромобилей и гибридов отдельно уточняем
+            параметры мощности, важные для расчёта платежей.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="request">
+    <div class="container">
+
+      <div class="request">
+
+        <h2>Найдём автомобиль под ваш запрос</h2>
+
+        <p>
+          Напишите модель автомобиля либо ваш бюджет и пожелания.
+          Мы сравним доступные предложения и подготовим расчёт.
+        </p>
+
+        <a
+          class="btn btn-main"
+          href="mailto:tulpanauto@example.com?subject=Запрос%20на%20подбор%20автомобиля">
+          Отправить запрос
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    © 2026 TULPAN AUTO | 途联汽车<br>
+    Автомобили из Китая в Россию
+  </div>
+</footer>
+
+</body>
+</html>
