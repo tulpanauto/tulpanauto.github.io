@@ -462,16 +462,14 @@
   placeholder="Например: BYD Yuan Up до 1,8 млн ₽"
   style="width:100%; padding:16px; margin:10px 0 18px; border-radius:12px; border:1px solid #35d6a0; font-size:16px;"
 >
-        <datalist id="carSuggestions">
-          <option value="BYD Yuan UP 2027 401KM Vitality Edition">БИД Бид Би Вай Ди BYD Юань Yuan</option>
-<option value="BYD Seagull 405KM">БИД Бид Би Вай Ди BYD Сигал Seagull</option>
-
-<option value="Changan Qiyuan Q05 EV 506 Max+">Чанган Changan Циюань Qiyuan Q05</option>
-<option value="Changan Nevo Q05 EV 506 Max+">Чанган Changan Нево Nevo Q05</option>
-
-<option value="Chery QQ Domi EV 405KM">Чери Черри Chery QQ Доми Domi</option>
-<option value="Chery QQ3 420KM">Чери Черри Chery QQ3 Кью-Кью 3</option>
-        </datalist>
+   <datalist id="carSuggestions">
+  <option value="BYD Yuan UP 2027 401KM Vitality Edition"></option>
+  <option value="BYD Seagull 405KM"></option>
+  <option value="Changan Qiyuan Q05 EV 506 Max+"></option>
+  <option value="Changan Nevo Q05 EV 506 Max+"></option>
+  <option value="Chery QQ Domi EV 405KM"></option>
+  <option value="Chery QQ3 420KM"></option>
+   </datalist> 
         
       <a
     class="btn btn-main"
@@ -524,6 +522,48 @@ function sendWhatsApp() {
 
     window.location.href = url;
 }
+  const carInput = document.getElementById('carRequest');
+
+const carAliases = [
+  {
+    name: 'BYD Yuan UP 2027 401KM Vitality Edition',
+    aliases: ['бид', 'бид юань', 'бид юан', 'юань', 'юан', 'byd', 'yuan']
+  },
+  {
+    name: 'BYD Seagull 405KM',
+    aliases: ['бид сигал', 'сигал', 'чайка', 'byd seagull', 'seagull']
+  },
+  {
+    name: 'Changan Qiyuan Q05 EV 506 Max+',
+    aliases: ['чанган', 'чанган циюань', 'циюань', 'qiyuan', 'changan qiyuan']
+  },
+  {
+    name: 'Changan Nevo Q05 EV 506 Max+',
+    aliases: ['чанган нево', 'нево', 'nevo', 'changan nevo']
+  },
+  {
+    name: 'Chery QQ Domi EV 405KM',
+    aliases: ['чери доми', 'черри доми', 'доми', 'chery domi']
+  },
+  {
+    name: 'Chery QQ3 420KM',
+    aliases: ['чери qq3', 'черри qq3', 'чери куку 3', 'qq3', 'chery qq3']
+  }
+];
+
+carInput.addEventListener('input', function () {
+  const q = this.value.toLowerCase().trim();
+
+  if (!q) return;
+
+  const match = carAliases.find(car =>
+    car.aliases.some(alias => alias === q)
+  );
+
+  if (match) {
+    this.value = match.name;
+  }
+});
 </script>
 
     
