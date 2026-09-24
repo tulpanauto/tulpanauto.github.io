@@ -461,11 +461,13 @@
   placeholder="Например: BYD Yuan Up до 1,8 млн ₽"
   style="width:100%; padding:16px; margin:10px 0 18px; border-radius:12px; border:1px solid #35d6a0; font-size:16px;"
 >
-        <a
-          class="btn btn-main"
-          href="https://wa.me/79631181118">
-          Написать в WhatsApp
-        </a>
+        
+      <a
+    class="btn btn-main"
+    href="#"
+    onclick="sendWhatsApp(); return false;">
+    Написать в WhatsApp
+      </a>
 <a
   class="btn btn-main"
   href="https://t.me/tulpanauto">
@@ -490,6 +492,32 @@
     Автомобили из Китая в Россию
   </div>
 </footer>
+<script>
+function sendWhatsApp() {
+    const input = document.getElementById('carRequest');
+    const request = input.value.trim();
+
+    if (!request) {
+        alert('Напишите модель автомобиля, бюджет или ваши пожелания.');
+        input.focus();
+        return;
+    }
+
+    const message =
+        'Здравствуйте! Хочу подобрать автомобиль из Китая.' +
+        '\n\nМой запрос: ' + request;
+
+    const url =
+        'https://wa.me/79631181118?text=' +
+        encodeURIComponent(message);
+
+    window.location.href = url;
+}
+</script>
+
+    
+    
+
 
 </body>
 </html>
