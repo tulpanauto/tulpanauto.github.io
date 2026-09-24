@@ -551,18 +551,24 @@ const carAliases = [
   }
 ];
 
-carInput.addEventListener('input', function () {
-  const q = this.value.toLowerCase().trim();
+carInput.addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
 
-  if (!q) return;
+    if (q.length < 2) return;
 
-  const match = carAliases.find(car =>
-    car.aliases.some(alias => alias === q)
-  );
+    const matches = carAliases.filter(car =>
+        car.name.toLowerCase().includes(q) ||
+        car.aliases.some(alias => alias.includes(q))
+    );
 
-  if (match) {
-    this.value = match.name;
-  }
+    const datalist = document.getElementById('carSuggestions');
+    datalist.innerHTML = '';
+
+    matches.forEach(car => {
+        const option = document.createElement('option');
+        option.value = car.name;
+        datalist.appendChild(option);
+    });
 });
 </script>
 
