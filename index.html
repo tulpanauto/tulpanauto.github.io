@@ -455,21 +455,19 @@
           Напишите модель автомобиля либо ваш бюджет и пожелания.
           Мы сравним доступные предложения и подготовим расчёт.
         </p>
-<input
-  type="text"
-  id="carRequest"
-  list="carSuggestions"
-  placeholder="Например: BYD Yuan Up до 1,8 млн ₽"
-  style="width:100%; padding:16px; margin:10px 0 18px; border-radius:12px; border:1px solid #35d6a0; font-size:16px;"
->
-   <datalist id="carSuggestions">
-  <option value="BYD Yuan UP 2027 401KM Vitality Edition"></option>
-  <option value="BYD Seagull 405KM"></option>
-  <option value="Changan Qiyuan Q05 EV 506 Max+"></option>
-  <option value="Changan Nevo Q05 EV 506 Max+"></option>
-  <option value="Chery QQ Domi EV 405KM"></option>
-  <option value="Chery QQ3 420KM"></option>
-   </datalist> 
+<div style="position:relative; width:100%; margin:10px 0 18px;">
+  <input
+    type="text"
+    id="carRequest"
+    placeholder="Например: BYD Yuan Up или Changan Q05"
+    autocomplete="off"
+    style="width:100%; padding:16px; border-radius:12px; box-sizing:border-box;"
+  >
+  <div
+    id="carSuggestions"
+    style="display:none; position:absolute; left:0; right:0; top:100%; z-index:1000; background:white; color:#111; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.25);"
+  ></div>
+</div>
         
       <a
     class="btn btn-main"
@@ -523,52 +521,86 @@ function sendWhatsApp() {
     window.location.href = url;
 }
   const carInput = document.getElementById('carRequest');
+const suggestionsBox = document.getElementById('carSuggestions');
 
-const carAliases = [
+const cars = [
   {
     name: 'BYD Yuan UP 2027 401KM Vitality Edition',
-    aliases: ['бид', 'бид юань', 'бид юан', 'юань', 'юан', 'byd', 'yuan']
+    aliases: ['бид', 'бид юань', 'юань', 'yuan', 'byd']
   },
   {
     name: 'BYD Seagull 405KM',
-    aliases: ['бид сигал', 'сигал', 'чайка', 'byd seagull', 'seagull']
+    aliases: ['бид сигал', 'сигал', 'чайка', 'seagull', 'byd']
   },
   {
     name: 'Changan Qiyuan Q05 EV 506 Max+',
-    aliases: ['чанган', 'чанган циюань', 'циюань', 'qiyuan', 'changan qiyuan']
+    aliases: ['чанган', 'чанган 506', 'чанган q05', 'циюань', 'qiyuan', 'changan']
   },
   {
     name: 'Changan Nevo Q05 EV 506 Max+',
-    aliases: ['чанган нево', 'нево', 'nevo', 'changan nevo']
+    aliases: ['чанган', 'чанган нево', 'нево', 'nevo', 'changan']
   },
   {
     name: 'Chery QQ Domi EV 405KM',
-    aliases: ['чери доми', 'черри доми', 'доми', 'chery domi']
+    aliases: ['чери', 'чери доми', 'доми', 'chery domi']
   },
   {
     name: 'Chery QQ3 420KM',
-    aliases: ['чери qq3', 'черри qq3', 'чери куку 3', 'qq3', 'chery qq3']
+    aliases: ['чери', 'чери qq3', 'куку 3', 'qq3', 'chery qq3']
   }
 ];
 
-carInput.addEventListener('input', function() {
-    const q = this.value.toLowerCase().trim();
+carInput.addEventListener('input', function () {
+  const q = this.value.toLowerCase().trim();
 
-    if (q.length < 2) return;
+  suggestionsBox.innerHTML = '';
 
-    const matches = carAliases.filter(car =>
-        car.name.toLowerCase().includes(q) ||
-        car.aliases.some(alias => alias.includes(q))
-    );
+  if (q.length < 2) {
+    suggestionsBox.style.display = 'none';
+    return;
+  }
 
-    const datalist = document.getElementById('carSuggestions');
-    datalist.innerHTML = '';
+  const matches = cars.filter(car =>
+    car.name.toLowerCase().includes(q) ||
+    car.aliases.some(alias => alias.includes(q))
+  );
 
-    matches.forEach(car => {
-        const option = document.createElement('option');
-        option.value = car.name;
-        datalist.appendChild(option);
+  if (matches.length === 0) {
+    suggestionsBox.style.display = 'none';
+    return;
+  }
+
+  matches.forEach(car => {
+    const item = document.createElement('div');
+    item.textContent = car.name;
+
+    item.style.padding = '14px 16px';
+    item.style.cursor = 'pointer';
+    item.style.borderBottom = '1px solid #ddd';
+    item.style.background = '#fff';
+    item.style.color = '#111';
+    item.style.fontSize = '16px';
+
+    item.addEventListener('click', function () {
+      carInput.value = car.name;
+      suggestionsBox.innerHTML = '';
+      suggestionsBox.style.display = 'none';
+      carInput.focus();
     });
+
+    suggestionsBox.appendChild(item);
+  });
+
+  suggestionsBox.style.display = 'block';
+});
+
+document.addEventListener('click', function (event) {
+  if (
+    event.target !== carInput &&
+    !suggestionsBox.contains(event.target)
+  ) {
+    suggestionsBox.style.display = 'none';
+  }
 });
 </script>
 
