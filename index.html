@@ -475,12 +475,12 @@
     onclick="sendWhatsApp(); return false;">
     Написать в WhatsApp
       </a>
-<a
+        <a
   class="btn btn-main"
-  href="https://t.me/tulpanauto">
+  href="#"
+  onclick="sendTelegram(); return false;">
   Написать в Telegram
-  
-      </a>
+        </a>
 
       
       </div>
@@ -518,6 +518,29 @@ function sendWhatsApp() {
 
     window.location.href = url;
 }
+
+
+function sendTelegram() {
+
+  const input = document.getElementById('carRequest');
+  const request = input.value.trim();
+
+  if (!request) {
+    alert('Напишите модель автомобиля или ваш бюджет и пожелания.');
+    input.focus();
+    return;
+  }
+
+  const message =
+    'Здравствуйте! Хочу подобрать автомобиль из Китая.' +
+    '\n\nМой запрос: ' + request;
+
+  const url =
+    'https://t.me/share/url?url=&text=' +
+    encodeURIComponent(message);
+
+  window.location.href = url;
+  }
   
   const carInput = document.getElementById('carRequest');
 const suggestionsBox = document.getElementById('carSuggestions');
