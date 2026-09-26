@@ -482,9 +482,10 @@
   
       </a>
 
- <a
+        <a
   class="btn btn-main"
-  href="https://max.ru/u/f9LHodD0cOIGVs1nxI8cKhinJ2-9rWU-PL6Lym8Cmg6QYizEbiXKwQ1jilk"
+  href="#"
+  onclick="openMax(); return false;">
   Написать в MAX
 </a>
       </div>
@@ -522,7 +523,7 @@ function sendWhatsApp() {
 
     window.location.href = url;
 }
-  function sendMax() {
+  function openMax() {
   const input = document.getElementById('carRequest');
   const request = input.value.trim();
 
@@ -537,8 +538,7 @@ function sendWhatsApp() {
     '\n\nМой запрос: ' + request;
 
   const url =
-    'https://max.ru/:share?text=' +
-    encodeURIComponent(message);
+  'https://max.ru/u/f9LHodD0cOIGVs1nxI8cKhinJ2-9rWU-PL6Lym8Cmg6QYizEbiXKwQ1jilk';
 
   window.location.href = url;
 }
