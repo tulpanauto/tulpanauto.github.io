@@ -482,12 +482,7 @@
   
       </a>
 
-        <a
-  class="btn btn-main"
-  href="#"
-  onclick="openMax(); return false;">
-  Написать в MAX
-</a>
+      
       </div>
 
     </div>
@@ -523,25 +518,7 @@ function sendWhatsApp() {
 
     window.location.href = url;
 }
-  function openMax() {
-  const input = document.getElementById('carRequest');
-  const request = input.value.trim();
-
-  if (!request) {
-    alert('Напишите модель автомобиля или ваш бюджет и пожелания.');
-    input.focus();
-    return;
-  }
-
-  const message =
-    'Здравствуйте! Хочу подобрать автомобиль из Китая.' +
-    '\n\nМой запрос: ' + request;
-
-  const url =
-  'https://max.ru/u/f9LHodD0cOIGVs1nxI8cKhinJ2-9rWU-PL6Lym8Cmg6QYizEbiXKwQ1jilk';
-
-  window.location.href = url;
-}
+  
   const carInput = document.getElementById('carRequest');
 const suggestionsBox = document.getElementById('carSuggestions');
 
