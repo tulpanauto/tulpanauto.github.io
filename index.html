@@ -536,8 +536,10 @@ function sendTelegram() {
     '\n\nМой запрос: ' + request;
 
   const url =
-    'https://t.me/share/url?url=&text=' +
-    encodeURIComponent(message);
+  'https://t.me/share/url?url=' +
+  encodeURIComponent('https://tulpanauto.github.io/') +
+  '&text=' +
+  encodeURIComponent(message);
 
   window.location.href = url;
   }
